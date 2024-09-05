@@ -1,0 +1,260 @@
+:root {
+    --bg-color: #f0f0f0;
+    --text-color: #333;
+    --button-bg: #555;
+    --button-text: white;
+    --popup-bg: black;
+    --popup-text: white;
+    --toggle-bg: #ccc;
+    --toggle-active: #2196F3;
+    --top-bar-bg: #333;
+    --top-bar-button-bg: #555;
+    --top-bar-button-hover: #777;
+}
+
+.dark-mode {
+    --bg-color: #333;
+    --text-color: #f0f0f0;
+    --button-bg: #777;
+    --button-text: white;
+    --popup-bg: #222;
+    --popup-text: #f0f0f0;
+    --toggle-bg: #555;
+    --toggle-active: #4CAF50;
+    --top-bar-bg: #222;
+    --top-bar-button-bg: #444;
+    --top-bar-button-hover: #666;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.top-bar {
+    background-color: var(--top-bar-bg);
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+    .top-bar button {
+        background-color: var(--top-bar-button-bg);
+        color: var(--button-text);
+        border: none;
+        width: 55px;
+        height: 55px;
+        margin-right: 10px;
+        font-size: 24px;
+        cursor: pointer;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background-color 0.3s;
+    }
+
+        .top-bar button:hover {
+            background-color: var(--top-bar-button-hover);
+        }
+
+.stopwatch {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    text-align: center;
+}
+
+#frameCount {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+#timeInfo {
+    margin-bottom: 16px;
+    font-size: 16px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.stopwatch button {
+    font-size: 18px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 120px;
+    border: none;
+}
+
+#startStopButton {
+    background-color: #42f55d;
+    color: black;
+}
+
+    #startStopButton:hover {
+        background-color: #3ad651;
+    }
+
+#resetButton {
+    background-color: #FFA500;
+    color: black;
+}
+
+    #resetButton:hover {
+        background-color: #FF8C00;
+    }
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 256px;
+    height: 325px;
+    line-height: 1.6;
+    color: var(--popup-text);
+    background: var(--popup-bg);
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+    .popup label {
+        display: block;
+        margin-top: 10px;
+    }
+
+    .popup input {
+        width: 100%;
+        padding: 5px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+
+    .popup button {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        background-color: #f5a623;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+    }
+
+    .popup.show {
+        display: block;
+    }
+
+.popup-content {
+    text-align: center;
+    padding: 10px;
+}
+
+    .popup-content p {
+        margin: 10px 0;
+    }
+
+    .popup-content a {
+        display: inline-block;
+        color: rgb(255, 166, 0);
+        text-align: center;
+        text-decoration: none;
+        margin: 5px;
+    }
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-right: 10px;
+}
+
+    .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--toggle-bg);
+    transition: .4s;
+}
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+    }
+
+input:checked + .slider {
+    background-color: var(--toggle-active);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--toggle-active);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+.hidden {
+    display: none;
+}
+
+#averageInfo {
+    background-color: var(--bg-color);
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+    #averageInfo h3 {
+        margin-top: 0;
+    }
